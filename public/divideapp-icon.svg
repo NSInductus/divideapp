@@ -1,0 +1,25 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0%" stop-color="#3fbf6a"></stop>
+<stop offset="100%" stop-color="#1f7f42"></stop>
+</linearGradient>
+</defs>
+
+<!-- Fondo redondeado tipo app -->
+<rect width="512" height="512" rx="110" fill="url(#bg)"></rect>
+
+<!-- Circulito tipo brillo / identidad -->
+<circle cx="256" cy="140" r="35" fill="rgba(255,255,255,0.35)"></circle>
+
+<!-- Manos -->
+<g transform="translate(80,180)">
+  <!-- Brazo izquierdo -->
+  <rect x="0" y="70" width="180" height="55" rx="25" fill="#ffe0b2"></rect>
+  <!-- Brazo derecho -->
+  <rect x="250" y="70" width="180" height="55" rx="25" fill="#ffcc80"></rect>
+  <!-- Unión manos -->
+  <rect x="150" y="48" width="120" height="100" rx="38" fill="#fff3d6"></rect>
+</g>
+
+</svg>

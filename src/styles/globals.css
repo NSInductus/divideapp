@@ -1,0 +1,142 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.page {
+  padding: 20px;
+}
+
+.title {
+  margin-top: 5px;
+}
+
+.subtitle {
+  margin-top: 15px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.btn {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: #ddd;
+}
+
+.btn.primary {
+  background: #4caf50;
+  color: white;
+}
+
+.btn.danger {
+  background: #c0392b;
+  color: white;
+}
+
+.btn.big {
+  margin-top: 20px;
+  padding: 12px 18px;
+}
+
+.btn.small {
+  padding: 5px 8px;
+}
+
+.people-list {
+  margin-top: 20px;
+}
+
+.person-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  margin: 4px;
+  border-radius: 8px;
+  background: #eee;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.avatar-small {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+}
+
+.item-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-top: 12px;
+  padding: 10px;
+}
+
+.participants {
+  margin-top: 8px;
+}
+
+.participant-btn {
+  margin: 4px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: #ddd;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.participant-btn.active {
+  background: #4caf50;
+  color: white;
+}
+
+.result-list {
+  margin-top: 10px;
+}
+
+.result-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+}
+
+.result-name {
+  width: 120px;
+  display: inline-block;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-title {
+  margin: 10px 0;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+}
