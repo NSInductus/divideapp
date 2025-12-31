@@ -7,10 +7,14 @@ import { useApp } from "../../context/AppContext";
 import { calculateTotals } from "../../utils/totals";
 
 export default function Items() {
-  const { people, items } = useApp();
+  const { people, items, setItems } = useApp();
   const nav = useNavigate();
 
   const totals = calculateTotals(people, items);
+
+  const removeItem = (index) => {
+    setItems(items.filter((_, i) => i !== index));
+  };
 
   return (
     <PageContainer>
@@ -18,8 +22,13 @@ export default function Items() {
 
       <AddItemForm />
 
-      {items.map((it, i) => (
-        <ItemCard key={i} item={it} index={i} />
+      {items.map((item, index) => (
+        <ItemCard
+          key={index}
+          item={item}
+          index={index}
+          onRemove={removeItem}
+        />
       ))}
 
       <h2 className="subtitle">Resultado provisional</h2>
@@ -30,7 +39,11 @@ export default function Items() {
         </div>
       ))}
 
-      <button className="btn primary big" onClick={() => nav("/result")}>
+      <button
+        className="btn primary big"
+        onClick={() => nav("/result")}
+        disabled={!items.length}
+      >
         Finalizar
       </button>
     </PageContainer>

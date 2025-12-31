@@ -4,7 +4,6 @@ export default function ParticipantsSelector({ itemIndex }) {
   const { people, items, setItems } = useApp();
   const item = items[itemIndex];
 
-  // ⛑️ defensa total
   if (!item || !item.parts) {
     return null;
   }

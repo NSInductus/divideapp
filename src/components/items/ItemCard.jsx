@@ -3,7 +3,7 @@ import ParticipantsSelector from "./ParticipantsSelector";
 import EditPartsModal from "./EditPartsModal";
 import { useApp } from "../../context/AppContext";
 
-export default function ItemCard({ item, index }) {
+export default function ItemCard({ item, index, onRemove }) {
   const { items, setItems } = useApp();
   const [showModal, setShowModal] = useState(false);
   const pressTimer = useRef(null);
@@ -13,12 +13,14 @@ export default function ItemCard({ item, index }) {
       const copy = [...items];
       const currentItem = copy[index];
 
-      // 🔥 SOLO la primera vez
+      if (!currentItem.parts) {
+        currentItem.parts = {};
+      }
+
       if (!currentItem.hasCustomParts) {
         const initialParts = {};
 
-        // Si estaba activo (verde) → 1
-        Object.entries(currentItem.parts || {}).forEach(
+        Object.entries(currentItem.parts).forEach(
           ([personId, value]) => {
             initialParts[personId] = value > 0 ? 1 : 0;
           }
@@ -40,6 +42,13 @@ export default function ItemCard({ item, index }) {
     }
   };
 
+  const handleRemove = (e) => {
+    e.stopPropagation();
+    if (window.confirm(`¿Eliminar "${item.name}"?`)) {
+      onRemove(index);
+    }
+  };
+
   return (
     <>
       <div
@@ -50,6 +59,11 @@ export default function ItemCard({ item, index }) {
         onTouchStart={handlePressStart}
         onTouchEnd={handlePressEnd}
       >
+        {/* ❌ BOTÓN BORRAR */}
+        <button className="item-remove" onClick={handleRemove}>
+          ✕
+        </button>
+
         <b>{item.name}</b> — {item.price}€
 
         <ParticipantsSelector itemIndex={index} />

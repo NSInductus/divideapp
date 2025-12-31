@@ -14,7 +14,7 @@ export default function AddItemForm() {
       {
         name: itemName.trim(),
         price: parseFloat(price),
-        parts: {}   // 👈 importante
+        parts: {}
       }
     ]);
 
