@@ -4,21 +4,34 @@ export default function ParticipantsSelector({ itemIndex }) {
   const { people, items, setItems } = useApp();
   const item = items[itemIndex];
 
+  // ⛑️ defensa total
+  if (!item || !item.parts) {
+    return null;
+  }
+
   const toggle = (personId) => {
     const copy = [...items];
+    const currentParts = { ...copy[itemIndex].parts };
 
-    if (copy[itemIndex].people.includes(personId)) {
-      copy[itemIndex].people = copy[itemIndex].people.filter(p => p !== personId);
+    if (currentParts[personId]) {
+      delete currentParts[personId];
     } else {
-      copy[itemIndex].people.push(personId);
+      currentParts[personId] = 1;
     }
 
+    copy[itemIndex].parts = currentParts;
     setItems(copy);
   };
 
   const selectAll = () => {
     const copy = [...items];
-    copy[itemIndex].people = people.map(p => p.id);
+    const newParts = {};
+
+    people.forEach(p => {
+      newParts[p.id] = 1;
+    });
+
+    copy[itemIndex].parts = newParts;
     setItems(copy);
   };
 
@@ -34,7 +47,8 @@ export default function ParticipantsSelector({ itemIndex }) {
           onClick={() => toggle(p.id)}
           className={
             "participant-btn" +
-            (item.people.includes(p.id) ? " active" : "")
+            (item.parts[p.id] > 0 ? " active" : "") +
+            (item.parts[p.id] > 1 ? " multi" : "")
           }
         >
           <img src={p.avatar} className="avatar-small" />

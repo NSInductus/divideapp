@@ -108,6 +108,16 @@ body {
   color: white;
 }
 
+.participant-btn.active {
+  background: #4caf50;
+  color: white;
+}
+
+.participant-btn.multi {
+  background: #fbc02d;
+  color: #222;
+}
+
 .result-list {
   margin-top: 10px;
 }
@@ -139,4 +149,77 @@ body {
   width: 42px;
   height: 42px;
   border-radius: 50%;
+}
+
+.input.price {
+  width: 90px;
+  text-align: right;
+}
+
+
+/* =====================
+   ITEM LONG PRESS HINT
+===================== */
+
+.item-hint {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #777;
+}
+
+/* =====================
+   MODAL EDIT PARTS
+===================== */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  border-radius: 14px;
+  padding: 16px;
+  width: 90%;
+  max-width: 360px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.modal h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.modal-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.modal-row span {
+  flex: 1;
+}
+
+.modal-row button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: #4caf50;
+  color: white;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.part-value {
+  min-width: 24px;
+  text-align: center;
+  font-weight: bold;
 }

@@ -14,7 +14,7 @@ export default function AddItemForm() {
       {
         name: itemName.trim(),
         price: parseFloat(price),
-        people: []
+        parts: {}   // 👈 importante
       }
     ]);
 
@@ -32,11 +32,11 @@ export default function AddItemForm() {
       />
 
       <input
-        className="input"
+        className="input price"
         value={price}
         type="number"
         onChange={e => setPrice(e.target.value)}
-        placeholder="Precio"
+        placeholder="€"
       />
 
       <button className="btn primary" onClick={add}>

@@ -1,14 +1,19 @@
 export function calculateTotals(people, items) {
   const totals = {};
-  people.forEach(p => totals[p.id] = 0);
+  people.forEach(p => {
+    totals[p.id] = 0;
+  });
 
-  items.forEach(it => {
-    if (!it.people?.length) return;
+  items.forEach(item => {
+    if (!item.parts || Object.keys(item.parts).length === 0) return;
 
-    const share = it.price / it.people.length;
+    const totalParts = Object.values(item.parts).reduce(
+      (sum, v) => sum + v,
+      0
+    );
 
-    it.people.forEach(pId => {
-      totals[pId] += share;
+    Object.entries(item.parts).forEach(([personId, part]) => {
+      totals[personId] += (item.price * part) / totalParts;
     });
   });
 
