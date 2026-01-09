@@ -19,3 +19,17 @@ export function calculateTotals(people, items) {
 
   return totals;
 }
+
+export function calculateItemsTotal(items) {
+  return items.reduce(
+    (sum, item) => sum + (item.price || 0),
+    0
+  );
+}
+
+export function sumTotals(totals) {
+  return Object.values(totals).reduce(
+    (sum, value) => sum + value,
+    0
+  );
+}

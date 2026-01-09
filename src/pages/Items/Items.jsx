@@ -4,13 +4,25 @@ import PageContainer from "../../components/layout/PageContainer";
 import AddItemForm from "../../components/items/AddItemForm";
 import ItemCard from "../../components/items/ItemCard";
 import { useApp } from "../../context/AppContext";
-import { calculateTotals } from "../../utils/totals";
+import {
+  calculateTotals,
+  calculateItemsTotal,
+  sumTotals
+} from "../../utils/totals";
 
 export default function Items() {
   const { people, items, setItems } = useApp();
   const nav = useNavigate();
 
   const totals = calculateTotals(people, items);
+
+  const totalCuenta = calculateItemsTotal(items);
+  const totalRepartido = sumTotals(totals);
+  const difference = totalCuenta - totalRepartido;
+
+  const canFinalize =
+    items.length > 0 &&
+    Math.abs(difference) < 0.01;
 
   const removeItem = (index) => {
     setItems(items.filter((_, i) => i !== index));
@@ -39,10 +51,21 @@ export default function Items() {
         </div>
       ))}
 
+      <div className="items-total-check">
+        <div>Total cuenta: <b>{totalCuenta.toFixed(2)} €</b></div>
+        <div>Total repartido: <b>{totalRepartido.toFixed(2)} €</b></div>
+
+        {Math.abs(difference) >= 0.01 && (
+          <div style={{ color: "#c0392b", marginTop: 6 }}>
+            ⚠️ Faltan repartir {difference.toFixed(2)} €
+          </div>
+        )}
+      </div>
+
       <button
         className="btn primary big"
         onClick={() => nav("/result")}
-        disabled={!items.length}
+        disabled={!canFinalize}
       >
         Finalizar
       </button>

@@ -164,6 +164,14 @@ body {
   color: #c0392b;
 }
 
+.items-total-check {
+  margin-top: 16px;
+  padding: 12px;
+  background: #f1f8e9;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
 
 /* ======================================================
    PARTICIPANTES DE UN PLATO
