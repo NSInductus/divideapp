@@ -234,6 +234,18 @@ body {
   font-size: 14px;
 }
 
+.receipt-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.receipt-hint {
+  margin: 8px 0 0;
+  color: #677;
+  font-size: 13px;
+}
+
 .receipt-preview {
   display: block;
   width: 100%;

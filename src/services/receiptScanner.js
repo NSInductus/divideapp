@@ -35,15 +35,31 @@ export function fileToDataUrl(file) {
     reader.onerror = () => reject(new Error("No se pudo leer la imagen."));
     reader.onload = () => {
       const image = new Image();
-      image.onerror = () => resolve(reader.result);
+      image.onerror = () => reject(new Error("No se pudo procesar la imagen."));
       image.onload = () => {
-        const maxDimension = 1800;
-        const scale = Math.min(1, maxDimension / Math.max(image.width, image.height));
         const canvas = document.createElement("canvas");
-        canvas.width = Math.round(image.width * scale);
-        canvas.height = Math.round(image.height * scale);
-        canvas.getContext("2d").drawImage(image, 0, 0, canvas.width, canvas.height);
-        resolve(canvas.toDataURL("image/jpeg", 0.84));
+        const context = canvas.getContext("2d");
+        if (!context) {
+          reject(new Error("No se pudo preparar la imagen."));
+          return;
+        }
+
+        const maxDimension = 1600;
+        const scale = Math.min(1, maxDimension / Math.max(image.width, image.height));
+        canvas.width = Math.max(1, Math.round(image.width * scale));
+        canvas.height = Math.max(1, Math.round(image.height * scale));
+        context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+        const qualities = [0.84, 0.76, 0.68, 0.6];
+        let output = "";
+        for (const quality of qualities) {
+          output = canvas.toDataURL("image/jpeg", quality);
+          if (output.length < 5_000_000) {
+            break;
+          }
+        }
+
+        resolve(output || canvas.toDataURL("image/jpeg", 0.6));
       };
       image.src = reader.result;
     };
