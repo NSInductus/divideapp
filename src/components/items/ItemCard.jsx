@@ -7,9 +7,15 @@ export default function ItemCard({ item, index, onRemove }) {
   const { items, setItems } = useApp();
   const [showModal, setShowModal] = useState(false);
   const pressTimer = useRef(null);
+  const pressStart = useRef({ x: 0, y: 0 });
+  const pressMoved = useRef(false);
 
-  const handlePressStart = () => {
+  const cancelPress = () => {
     pressTimer.current = setTimeout(() => {
+      if (pressMoved.current) {
+        return;
+      }
+
       const copy = [...items];
       const currentItem = copy[index];
 
@@ -32,13 +38,36 @@ export default function ItemCard({ item, index, onRemove }) {
       }
 
       setShowModal(true);
-    }, 600);
+    }, 1200);
   };
 
   const handlePressEnd = () => {
     if (pressTimer.current) {
       clearTimeout(pressTimer.current);
       pressTimer.current = null;
+    }
+    pressMoved.current = false;
+  };
+
+  const handlePressStart = (event) => {
+    pressMoved.current = false;
+    if (event.touches?.[0]) {
+      pressStart.current = {
+        x: event.touches[0].clientX,
+        y: event.touches[0].clientY
+      };
+    }
+    cancelPress();
+  };
+
+  const handlePressMove = (event) => {
+    if (!event.touches?.[0] || pressMoved.current) return;
+
+    const dx = Math.abs(event.touches[0].clientX - pressStart.current.x);
+    const dy = Math.abs(event.touches[0].clientY - pressStart.current.y);
+    if (dx > 10 || dy > 10) {
+      pressMoved.current = true;
+      handlePressEnd();
     }
   };
 
@@ -58,6 +87,7 @@ export default function ItemCard({ item, index, onRemove }) {
         onMouseLeave={handlePressEnd}
         onTouchStart={handlePressStart}
         onTouchEnd={handlePressEnd}
+        onTouchMove={handlePressMove}
       >
         {/* ❌ BOTÓN BORRAR */}
         <button className="item-remove" onClick={handleRemove}>
