@@ -5,6 +5,16 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
+  touch-action: pan-y;
+  -webkit-text-size-adjust: 100%;
+}
+
+html,
+#root {
+  width: 100%;
+  min-height: 100%;
 }
 
 
@@ -14,6 +24,8 @@ body {
 
 .page {
   padding: 20px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .header {
@@ -21,10 +33,13 @@ body {
   justify-content: space-between;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .header-title {
   margin: 10px 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 
@@ -49,12 +64,15 @@ body {
   display: flex;
   gap: 10px;
   margin-top: 10px;
+  flex-wrap: wrap;
 }
 
 .input {
   padding: 8px;
   border-radius: 6px;
   border: 1px solid #ccc;
+  box-sizing: border-box;
+  min-width: 0;
 }
 
 .input.price {
@@ -90,6 +108,7 @@ body {
   border: none;
   cursor: pointer;
   background: #ddd;
+  max-width: 100%;
 }
 
 .btn.primary {
@@ -183,6 +202,9 @@ body {
   border-radius: 8px;
   margin-top: 12px;
   padding: 10px;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 .item-hint {
@@ -240,6 +262,10 @@ body {
   gap: 8px;
 }
 
+.receipt-actions .btn {
+  flex: 1 1 160px;
+}
+
 .receipt-hint {
   margin: 8px 0 0;
   color: #677;
@@ -274,11 +300,16 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
+  flex-wrap: wrap;
 }
 
 .receipt-item-row .input:first-child {
   flex: 1;
   min-width: 0;
+}
+
+.receipt-item-row .input.price {
+  width: 96px;
 }
 
 @media (max-width: 430px) {
@@ -302,10 +333,12 @@ body {
 
 .participants {
   margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .participant-btn {
-  margin: 4px;
   padding: 6px 10px;
   border-radius: 10px;
   background: #ddd;
@@ -314,6 +347,8 @@ body {
   gap: 6px;
   border: none;
   cursor: pointer;
+  max-width: 100%;
+  min-width: 0;
 }
 
 /* ha consumido 1 parte */
@@ -342,11 +377,13 @@ body {
   align-items: center;
   gap: 8px;
   padding: 6px;
+  flex-wrap: wrap;
 }
 
 .result-name {
   width: 120px;
   display: inline-block;
+  overflow-wrap: anywhere;
 }
 
 
@@ -371,6 +408,7 @@ body {
   width: 90%;
   max-width: 360px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  box-sizing: border-box;
 }
 
 .modal h3 {
@@ -384,10 +422,12 @@ body {
   align-items: center;
   gap: 10px;
   margin: 10px 0;
+  flex-wrap: wrap;
 }
 
 .modal-row span {
   flex: 1;
+  min-width: 0;
 }
 
 .modal-row button {
@@ -405,4 +445,70 @@ body {
   min-width: 24px;
   text-align: center;
   font-weight: bold;
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 12px;
+  }
+
+  .header {
+    align-items: flex-start;
+  }
+
+  .header .btn.small {
+    flex: 1 1 120px;
+  }
+
+  .row {
+    gap: 8px;
+  }
+
+  .row .input {
+    flex: 1 1 100%;
+  }
+
+  .row .input.price {
+    width: 100%;
+    text-align: left;
+  }
+
+  .row .btn {
+    width: 100%;
+  }
+
+  .receipt-import {
+    padding: 12px;
+  }
+
+  .receipt-item-row .input:first-child {
+    flex: 1 1 100%;
+  }
+
+  .receipt-item-row .input.price {
+    flex: 1 1 96px;
+  }
+
+  .receipt-item-row .inline-remove {
+    margin-left: auto;
+  }
+
+  .participant-btn {
+    flex: 1 1 calc(50% - 6px);
+  }
+
+  .result-name {
+    width: 100%;
+  }
+
+  .modal {
+    width: calc(100% - 24px);
+    max-width: none;
+    padding: 14px;
+  }
+
+  .modal-row button {
+    width: 30px;
+    height: 30px;
+  }
 }
