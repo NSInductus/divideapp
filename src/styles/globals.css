@@ -62,6 +62,23 @@ body {
   text-align: right;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.form-error {
+  color: #c0392b;
+  margin: 8px 0 0;
+}
+
 
 /* ======================================================
    BOTONES
@@ -78,6 +95,12 @@ body {
 .btn.primary {
   background: #4caf50;
   color: white;
+}
+
+.btn.secondary {
+  background: #e8f5e9;
+  color: #256b2a;
+  border: 1px solid #81c784;
 }
 
 .btn.danger {
@@ -111,6 +134,25 @@ body {
   margin: 4px;
   border-radius: 8px;
   background: #eee;
+}
+
+.person-remove {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #777;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.person-remove:hover {
+  color: #c0392b;
+  background: #fff;
 }
 
 
@@ -162,6 +204,75 @@ body {
 
 .item-remove:hover {
   color: #c0392b;
+}
+
+.item-remove.inline-remove {
+  position: static;
+  flex: 0 0 32px;
+  padding: 0;
+}
+
+/* ======================================================
+   IMPORTAR TICKET
+====================================================== */
+
+.receipt-import {
+  margin-top: 18px;
+  padding: 14px;
+  border: 1px dashed #81c784;
+  border-radius: 10px;
+  background: #fbfffb;
+}
+
+.receipt-import .subtitle {
+  margin: 0;
+}
+
+.receipt-copy {
+  margin: 4px 0 12px;
+  color: #556;
+  font-size: 14px;
+}
+
+.receipt-preview {
+  display: block;
+  width: 100%;
+  max-height: 240px;
+  margin-top: 12px;
+  border-radius: 8px;
+  object-fit: contain;
+  background: #f3f3f3;
+}
+
+.receipt-review {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.receipt-review-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.receipt-item-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.receipt-item-row .input:first-child {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 430px) {
+  .receipt-item-row .input.price {
+    width: 72px;
+  }
 }
 
 .items-total-check {

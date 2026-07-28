@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../../components/layout/Header";
 import PageContainer from "../../components/layout/PageContainer";
 import AddItemForm from "../../components/items/AddItemForm";
+import ReceiptImport from "../../components/items/ReceiptImport";
 import ItemCard from "../../components/items/ItemCard";
 import { useApp } from "../../context/AppContext";
 import {
@@ -28,11 +29,16 @@ export default function Items() {
     setItems(items.filter((_, i) => i !== index));
   };
 
+  const importReceiptItems = (receiptItems) => {
+    setItems([...items, ...receiptItems.map(item => ({ ...item, parts: {} }))]);
+  };
+
   return (
     <PageContainer>
       <Header title="Platos" back />
 
       <AddItemForm />
+      <ReceiptImport onImport={importReceiptItems} />
 
       {items.map((item, index) => (
         <ItemCard
