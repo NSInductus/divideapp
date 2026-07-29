@@ -82,14 +82,20 @@ export default function ReceiptImport({ onImport }) {
         onChange={selectFile}
       />
 
-      <div className="receipt-actions">
-        <button className="btn secondary" type="button" onClick={() => cameraInputRef.current?.click()} disabled={scanning}>
-          {scanning ? "Leyendo ticket..." : "Hacer foto"}
-        </button>
-        <button className="btn secondary" type="button" onClick={() => galleryInputRef.current?.click()} disabled={scanning}>
-          {scanning ? "Leyendo ticket..." : "Elegir de galería"}
-        </button>
-      </div>
+      {scanning ? (
+        <p className="receipt-scanning" role="status" aria-live="polite">
+          Analizando imagen...
+        </p>
+      ) : (
+        <div className="receipt-actions">
+          <button className="btn secondary" type="button" onClick={() => cameraInputRef.current?.click()}>
+            Hacer foto
+          </button>
+          <button className="btn secondary" type="button" onClick={() => galleryInputRef.current?.click()}>
+            Elegir de galería
+          </button>
+        </div>
+      )}
 
       <p className="receipt-hint">Si la imagen pesa mucho, la reducimos automáticamente antes de analizarla.</p>
 

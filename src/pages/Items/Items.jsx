@@ -37,8 +37,8 @@ export default function Items() {
     <PageContainer>
       <Header title="Platos" back />
 
-      <AddItemForm />
       <ReceiptImport onImport={importReceiptItems} />
+      <AddItemForm />
 
       {items.map((item, index) => (
         <ItemCard

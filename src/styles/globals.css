@@ -266,6 +266,14 @@ html,
   flex: 1 1 160px;
 }
 
+.receipt-scanning {
+  margin: 0;
+  padding: 9px 0;
+  color: #256b2a;
+  font-weight: 600;
+  text-align: center;
+}
+
 .receipt-hint {
   margin: 8px 0 0;
   color: #677;
