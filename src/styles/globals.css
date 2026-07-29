@@ -347,7 +347,9 @@ html,
 }
 
 .participant-btn {
+  flex: 0 1 auto;
   padding: 6px 10px;
+  min-height: 38px;
   border-radius: 10px;
   background: #ddd;
   display: inline-flex;
@@ -357,6 +359,7 @@ html,
   cursor: pointer;
   max-width: 100%;
   min-width: 0;
+  line-height: 1.2;
 }
 
 /* ha consumido 1 parte */
@@ -499,10 +502,6 @@ html,
 
   .receipt-item-row .inline-remove {
     margin-left: auto;
-  }
-
-  .participant-btn {
-    flex: 1 1 calc(50% - 6px);
   }
 
   .result-name {
