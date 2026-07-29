@@ -55,6 +55,18 @@ html,
   margin-top: 15px;
 }
 
+.welcome-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.welcome-actions .btn.big {
+  margin-top: 0;
+}
+
 
 /* ======================================================
    FORMULARIOS
@@ -469,6 +481,10 @@ html,
 
   .header .btn.small {
     flex: 1 1 120px;
+  }
+
+  .welcome-actions .btn {
+    width: 100%;
   }
 
   .row {
