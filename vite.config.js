@@ -42,18 +42,34 @@ export default defineConfig(({ mode }) => {
     VitePWA({
       registerType: "autoUpdate",
       manifest: {
+        id: "/",
         name: "DivideApp",
         short_name: "DivideApp",
-        start_url: ".",
+        description: "Reparte una cuenta entre varias personas de forma sencilla.",
+        lang: "es",
+        start_url: "/",
+        scope: "/",
         display: "standalone",
         background_color: "#ffffff",
         theme_color: "#4caf50",
         icons: [
           {
             src: "/divideapp-icon.svg",
-            sizes: "512x512",
+            sizes: "any",
             type: "image/svg+xml",
-            purpose: "any maskable"
+            purpose: "any"
+          },
+          {
+            src: "/divideapp-icon-192.png",
+            sizes: "192x192",
+            type: "image/png",
+            purpose: "any"
+          },
+          {
+            src: "/divideapp-icon-512.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "any"
           }
         ]
       }
